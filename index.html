@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>atvjs by emadalam</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">atvjs</h1>
+        <p class="header">Apple TV JavaScript development sdk using TVML and TVJS</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/emadalam/atvjs/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/emadalam/atvjs/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/emadalam/atvjs">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/emadalam">emadalam</a></p>
+
+
+      </header>
+      <section>
+        <h3>
+<a id="what" class="anchor" href="#what" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What?</h3>
+
+<p>This is a super simple SDK for blazing fast <a href="https://developer.apple.com/tvos/">Apple TV</a> application development using pure JavaScript. It relies on the provided <a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/">TVML</a> and <a href="https://developer.apple.com/library/prerelease/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/">TVJS</a> by Apple. However this framework does most of the heavy lifting for you and lets you concentrate on your application logic without worrying about the hassles of complicated architecture for <a href="https://developer.apple.com/tvos/">Apple TV</a> development. Build your <a href="https://developer.apple.com/tvos/">Apple TV</a> app the same way how you are used to building your SPA applications in JavaScript and let the framework handle the rest for you.</p>
+
+<h3>
+<a id="why" class="anchor" href="#why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why?</h3>
+
+<p>The existing application architecture and sample code provided by apple for building the <a href="https://developer.apple.com/tvos/">Apple TV</a> app using <a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/">TVML</a> and <a href="https://developer.apple.com/library/prerelease/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/">TVJS</a> is kinda convoluted and feels more like the web apps of the 90s where each page loads separately by sending the request to the backend which generates your application page markup based on the user interaction and sends the new page back to the browser. This is okay if we were still in the 90s but feels so dumb in this era where we are used to building SPAs with REST APIs and backend is just a data interaction point. Here comes atvjs that bridges the gap and lets you use the same architecture that we as front-end developers have embraced over the years.</p>
+
+<h3>
+<a id="how" class="anchor" href="#how" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How?</h3>
+
+<p>You simply create your pages (views) by passing a bunch of configurations (name of the page, template function, url etc) with your desired data (you can either populate data manually using your own ajax requests or pass a url configuration to fetch data from your server). Once the page is created, you can navigate to your page anytime in your application using the given page name.</p>
+
+<h3>
+<a id="contributions" class="anchor" href="#contributions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributions</h3>
+
+<p>It was a hurried development process as we planned to launch our Apple TV application in a span of less than two months, with only a single full-time developer (that happened to be me) working on the project, this framework was a byproduct of the application. It is still in its very early stages and there might be few bugs and issues with it, with a huge scope of improvement. Please feel free to contribute and enhance this SDK with bug-fixes and features.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-44640221-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
