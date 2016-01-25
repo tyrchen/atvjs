@@ -30,25 +30,497 @@
 
       </header>
       <section>
-        <h3>
-<a id="what" class="anchor" href="#what" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What?</h3>
+        <h1>
+<a id="atvjs" class="anchor" href="#atvjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>atvjs</h1>
 
-<p>This is a super simple SDK for blazing fast <a href="https://developer.apple.com/tvos/">Apple TV</a> application development using pure JavaScript. It relies on the provided <a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/">TVML</a> and <a href="https://developer.apple.com/library/prerelease/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/">TVJS</a> by Apple. However this framework does most of the heavy lifting for you and lets you concentrate on your application logic without worrying about the hassles of complicated architecture for <a href="https://developer.apple.com/tvos/">Apple TV</a> development. Build your <a href="https://developer.apple.com/tvos/">Apple TV</a> app the same way how you are used to building your SPA applications in JavaScript and let the framework handle the rest for you.</p>
+<p>Blazing fast Apple TV application development using pure JavaScript.</p>
+
+
+
+<ul>
+<li>
+<a href="#philosophy">Philosophy</a>
+
+<ul>
+<li><a href="#what">What?</a></li>
+<li><a href="#why">Why?</a></li>
+<li><a href="#how">How?</a></li>
+</ul>
+</li>
+<li><a href="#whats-included">What's included</a></li>
+<li>
+<a href="#basic-examples">Basic Examples</a>
+
+<ul>
+<li><a href="#creating-pages">Creating Pages</a></li>
+<li><a href="#adding-tvml-styles-to-your-page">Adding TVML styles to your page</a></li>
+<li><a href="#fetching-data-from-a-remote-source">Fetching data from a remote source</a></li>
+<li><a href="#creating-links-to-other-pages">Creating links to other pages</a></li>
+</ul>
+</li>
+<li>
+<a href="#advanced-topics">Advanced Topics</a>
+
+<ul>
+<li><a href="#event-handling">Event Handling</a></li>
+<li><a href="#custom-options-while-navigation">Custom options while navigation</a></li>
+<li><a href="#creating-menu-page">Creating Menu Page</a></li>
+<li><a href="#application-initialization-using-configuration">Application initialization using configuration</a></li>
+</ul>
+</li>
+<li><a href="#useful-links">Useful Links</a></li>
+<li><a href="#contributions">Contributions</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+
+
+<p><a name="philosophy"></a></p>
 
 <h3>
-<a id="why" class="anchor" href="#why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why?</h3>
+<a id="philosophy" class="anchor" href="#philosophy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Philosophy</h3>
 
-<p>The existing application architecture and sample code provided by apple for building the <a href="https://developer.apple.com/tvos/">Apple TV</a> app using <a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/">TVML</a> and <a href="https://developer.apple.com/library/prerelease/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/">TVJS</a> is kinda convoluted and feels more like the web apps of the 90s where each page loads separately by sending the request to the backend which generates your application page markup based on the user interaction and sends the new page back to the browser. This is okay if we were still in the 90s but feels so dumb in this era where we are used to building SPAs with REST APIs and backend is just a data interaction point. Here comes atvjs that bridges the gap and lets you use the same architecture that we as front-end developers have embraced over the years.</p>
+<p><a name="what"></a></p>
+
+<h4>
+<a id="what" class="anchor" href="#what" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What?</h4>
+
+<p>This is a super simple framework for blazing fast <a href="https://developer.apple.com/tvos/">Apple TV</a> application development using pure JavaScript. It relies on the <a href="https://developer.apple.com/tvos/">tvOS</a> provided <a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/">TVML</a> and <a href="https://developer.apple.com/library/prerelease/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/">TVJS</a> for <a href="https://developer.apple.com/library/tvos/documentation/General/Conceptual/AppleTV_PG/">Apple TV development</a>. However this framework does most of the heavy lifting for you and lets you concentrate on your application logic without worrying about the hassles of complicated architecture for Apple TV development. Build your Apple TV application the same way how you are used to building your SPA applications in JavaScript and let the framework handle the rest for you.</p>
+
+<p><a name="why"></a></p>
+
+<h4>
+<a id="why" class="anchor" href="#why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why?</h4>
+
+<p>The existing application architecture and sample code provided by apple for building the Apple TV applications using TVML and TVJS appears to be very immature (no offense Apple) and feels more like the web applications of the 90s where each of the page loads separately by sending the request to the back-end which generates your application page markup based on the user interaction and sends the new page back to the browser. This is okay if we were still in the 90s but feels so dumb in this era where we are used to building SPAs with REST APIs and back-end is used just as a data interaction point. Here comes <em>atvjs</em> that bridges the gap and lets you use the same architecture that, we as front-end developers, have embraced over the years.</p>
+
+<p><a name="how"></a></p>
+
+<h4>
+<a id="how" class="anchor" href="#how" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How?</h4>
+
+<p>You simply create your pages (views) by passing a bunch of configurations (name of the page, template function, url etc) with your desired data (you can either populate data manually using your own ajax requests or pass a url configuration to fetch data from your server). Once the page is created, it is uniquely identifiable using the name. You can navigate to your page anytime in your application using the same name.</p>
+
+<p><a name="whats-included"></a></p>
 
 <h3>
-<a id="how" class="anchor" href="#how" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How?</h3>
+<a id="whats-included" class="anchor" href="#whats-included" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What's included</h3>
 
-<p>You simply create your pages (views) by passing a bunch of configurations (name of the page, template function, url etc) with your desired data (you can either populate data manually using your own ajax requests or pass a url configuration to fetch data from your server). Once the page is created, you can navigate to your page anytime in your application using the given page name.</p>
+<ul>
+<li>Page, Menu and Modal Creation and Navigation <code>ATV.Page.create</code>, <code>ATV.Menu.create</code>, <code>ATV.Navigation.navigate</code>, <code>ATV.Navigation.navigateToMenuPage</code>, <code>ATV.Navigation.presentModal</code>
+</li>
+<li>TVML styling capabilities (both global as well as individual page level)</li>
+<li>Event handling (both global and for individual pages and elements)</li>
+<li>Application level persistent data storage using localStorage <code>ATV.Settings.set</code>,  <code>ATV.Settings.get</code>, <code>ATV.Settings.remove</code>
+</li>
+<li>AJAX library using JavaScript Promises <code>ATV.AJAX</code>, <code>ATV.AJAX.get</code>, <code>ATV.AJAX.post</code>, <code>ATV.AJAX.put</code>, <code>ATV.AJAX.del</code>
+</li>
+<li>Application level publish/subscribe using <a href="https://github.com/mroderick/PubSubJS">PubSubJS</a> <code>ATV.subscribe</code>, <code>ATV.publish</code>, <code>ATV.unsubscribe</code>
+</li>
+<li>Application initialization/reload using simple configurations <code>ATV.start</code>, <code>ATV.reload</code>
+</li>
+<li>Global error handling</li>
+<li>JavaScript <code>Promise</code> and other ES6 Features <a href="https://babeljs.io/docs/usage/polyfill/">Polyfill using babel</a>
+</li>
+<li>
+<a href="https://lodash.com/">lodash</a> library</li>
+</ul>
+
+<p><a name="basic-examples"></a></p>
+
+<h3>
+<a id="basic-examples" class="anchor" href="#basic-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic Examples</h3>
+
+<p><a name="creating-pages"></a></p>
+
+<h4>
+<a id="creating-pages" class="anchor" href="#creating-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating Pages</h4>
+
+<p>Create pages in your application using the page factory. You will then be able to navigate to these pages using the name of the page.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>,
+    <span class="pl-c">// use a template function from your favourite templating engine</span>
+    <span class="pl-c">// or pass a raw template function</span>
+    <span class="pl-en">template</span>(<span class="pl-smi">data</span>) {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">`</span>&lt;document&gt;</span>
+<span class="pl-s">                    &lt;alertTemplate&gt;</span>
+<span class="pl-s">                        &lt;title&gt;<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">data</span>.<span class="pl-c1">title</span><span class="pl-pse">}</span></span>&lt;/title&gt;</span>
+<span class="pl-s">                        &lt;description&gt;<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">data</span>.<span class="pl-c1">description</span><span class="pl-pse">}</span></span>&lt;/description&gt;</span>
+<span class="pl-s">                    &lt;/alertTemplate&gt;</span>
+<span class="pl-s">                &lt;/document&gt;<span class="pl-pds">`</span></span>;
+    },
+    <span class="pl-c">// pass some raw data to be applied</span>
+    <span class="pl-c">// or a data function that returns the data</span>
+    data<span class="pl-k">:</span> {
+        title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Homepage<span class="pl-pds">'</span></span>,
+        message<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>This is my super awesome homepage created using atvjs.<span class="pl-pds">'</span></span>
+    }
+});
+
+<span class="pl-c">// later in your application you can do something like below to navigate to the page</span>
+<span class="pl-smi">ATV</span>.<span class="pl-smi">Navigation</span>.<span class="pl-c1">navigate</span>(<span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><a name="adding-tvml-styles-to-your-page"></a></p>
+
+<h4>
+<a id="adding-tvml-styles-to-your-page" class="anchor" href="#adding-tvml-styles-to-your-page" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding TVML styles to your page</h4>
+
+<p>You need to define your <a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/ITMLStyles.html">TVML styles</a> as string and pass that as a configuration to your page. It will automatically be added to your page document in the runtime when your page is being navigated.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">let</span> myPageStyles <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">`</span></span>
+<span class="pl-s">.text-bold {</span>
+<span class="pl-s">    font-weight: bold;</span>
+<span class="pl-s">}</span>
+<span class="pl-s">.text-white {</span>
+<span class="pl-s">    color: rgb(255, 255, 255);</span>
+<span class="pl-s">}</span>
+<span class="pl-s"><span class="pl-pds">`</span></span>;
+
+<span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>,
+    style<span class="pl-k">:</span> myPageStyles,
+    template<span class="pl-k">:</span> your_template_function,
+    data<span class="pl-k">:</span> your_data
+});</pre></div>
+
+<p><a name="fetching-data-from-a-remote-source"></a></p>
+
+<h4>
+<a id="fetching-data-from-a-remote-source" class="anchor" href="#fetching-data-from-a-remote-source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fetching data from a remote source</h4>
+
+<p>You can fetch <code>JSON</code> content from the remote api by setting the <code>url</code> configuration. The data will be fetched using ajax and will be applied to the provided template. You can even run some transformations on the data before applying it to the template</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>,
+    url<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>path/to/your/api/that/returns/json<span class="pl-pds">'</span></span>,
+    template<span class="pl-k">:</span> your_template_function
+});
+
+<span class="pl-c">// or you can transform the response before applying to your template</span>
+<span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>,
+    url<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>path/to/your/api/that/returns/json<span class="pl-pds">'</span></span>,
+    template<span class="pl-k">:</span> your_template_function,
+    <span class="pl-en">data</span>(<span class="pl-smi">response</span>) {
+        <span class="pl-c">// transform your response before applying to your template</span>
+        <span class="pl-k">let</span> transformedData <span class="pl-k">=</span> <span class="pl-en">someTransformationOfResponse</span>(response);
+        <span class="pl-k">return</span> transformedData;
+    }
+});</pre></div>
+
+<p><a name="creating-links-to-other-pages"></a></p>
+
+<h4>
+<a id="creating-links-to-other-pages" class="anchor" href="#creating-links-to-other-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating links to other pages</h4>
+
+<p>You can setup links to other pages directly in your <a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/">TVML markup</a> by setting the <code>data-href-page</code> attribute with the value of your page name that you want to link to. The framework will take care of the navigation for you. You can also pass options to your page (see topic <em><a href="#custom-options-while-navigation">Custom options while navigation</a></em> for details) by setting up the <code>data-href-page-options</code> attribute with a JSON value.</p>
+
+<pre><code>&lt;document&gt;
+    &lt;alertTemplate&gt;
+        &lt;title&gt;Example for creating links to other pages&lt;/title&gt;
+        &lt;description&gt;Select an option&lt;/description&gt;
+        &lt;button data-href-page="homepage"&gt;
+            &lt;text&gt;Go To Homepage&lt;/text&gt;
+        &lt;/button&gt;
+        &lt;button data-href-page="login" data-href-page-options='{"username": "emadalam", "password": "123456"}'&gt;
+            &lt;text&gt;Login&lt;/text&gt;
+        &lt;/button&gt;
+    &lt;/alertTemplate&gt;
+&lt;/document&gt;
+</code></pre>
+
+<p><a name="advanced-topics"></a></p>
+
+<h3>
+<a id="advanced-topics" class="anchor" href="#advanced-topics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced Topics</h3>
+
+<p><a name="event-handling"></a></p>
+
+<h4>
+<a id="event-handling" class="anchor" href="#event-handling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event Handling</h4>
+
+<p>You can define the list of events and their respective handlers as key-value pairs. The handler will be invoked in the current object context and you can access all the methods and properties that exist on the object.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>mypage<span class="pl-pds">'</span></span>,
+    template<span class="pl-k">:</span> your_template_function,
+    data<span class="pl-k">:</span> your_data,
+    events<span class="pl-k">:</span> {
+        select<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>onSelect<span class="pl-pds">'</span></span>,
+        highlight<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>onHighlight<span class="pl-pds">'</span></span>
+    },
+    <span class="pl-c">// method invoked in the scope of the current object and</span>
+    <span class="pl-c">// 'this' will be bound to the object at runtime</span>
+    <span class="pl-c">// so you can easily access methods and properties and even modify them at runtime</span>
+    <span class="pl-en">onSelect</span>(<span class="pl-smi">e</span>) {
+        <span class="pl-k">let</span> element <span class="pl-k">=</span> <span class="pl-smi">e</span>.<span class="pl-c1">target</span>;
+        <span class="pl-k">let</span> someCheckForElementType <span class="pl-k">=</span> <span class="pl-smi">element</span>.<span class="pl-c1">getAttribute</span>(<span class="pl-s"><span class="pl-pds">'</span>data-my-attribute<span class="pl-pds">'</span></span>);
+        <span class="pl-k">let</span> someOtherCheckForElementType <span class="pl-k">=</span> <span class="pl-smi">element</span>.<span class="pl-c1">getAttribute</span>(<span class="pl-s"><span class="pl-pds">'</span>data-my-other-attribute<span class="pl-pds">'</span></span>);
+
+        <span class="pl-k">if</span> (someCheckForElementType) {
+            <span class="pl-v">this</span>.<span class="pl-en">doSomethingOnElementType1</span>();
+        }
+
+        <span class="pl-k">if</span> (someOtherCheckForElementType) {
+            <span class="pl-v">this</span>.<span class="pl-en">doSomethingOnElementType2</span>();
+        }
+    },
+    <span class="pl-en">onHighlight</span>(<span class="pl-smi">e</span>) {
+        <span class="pl-c">// same as above</span>
+    },
+    <span class="pl-en">doSomethingOnElementType1</span>() {
+        <span class="pl-c">// some awesome action</span>
+    },
+    <span class="pl-en">doSomethingOnElementType2</span>() {
+        <span class="pl-c">// some other awesome action</span>
+    }
+});</pre></div>
+
+<p><a name="custom-options-while-navigation"></a></p>
+
+<h4>
+<a id="custom-options-while-navigation" class="anchor" href="#custom-options-while-navigation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom options while navigation</h4>
+
+<p>You can pass your application state/logic to make reusable dynamic pages that renders a new page each time the navigation is performed. This can be achieved by setting a <code>ready</code> method in the configuration that accepts 3 parameters, <code>options</code>, <code>resolve</code> and <code>reject</code>. These parameters are automatically passed to the ready method whenever a navigation to this page is performed. The navigation relies on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">JavaScript Promises</a>, so you'll have to call resolve/reject method after performing your logic.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>login<span class="pl-pds">'</span></span>,
+    template<span class="pl-k">:</span> your_template_function,
+    <span class="pl-c">// the ready method is called each time the navigation to this page is performed and</span>
+    <span class="pl-c">// the options object is passed to the method at runtime</span>
+    <span class="pl-c">// use options to pass any dynamic state of your application</span>
+    <span class="pl-c">// you can then use this state and populate your data (either using custom ajax or some other logic)</span>
+    <span class="pl-c">// once the data is populated, call the resolve method with the data or reject method for failure</span>
+    <span class="pl-en">ready</span>(<span class="pl-smi">options</span>, <span class="pl-smi">resolve</span>, <span class="pl-smi">reject</span>) {
+        <span class="pl-k">let</span> data <span class="pl-k">=</span> {
+            username<span class="pl-k">:</span> <span class="pl-smi">options</span>.<span class="pl-smi">username</span>,
+            password<span class="pl-k">:</span> <span class="pl-smi">options</span>.<span class="pl-smi">password</span>
+        };
+        <span class="pl-c">// perform ajax to get the data</span>
+        <span class="pl-c">// the ajax method in the library returns an instance of the Promise object</span>
+        <span class="pl-c1">ATV</span>
+            .<span class="pl-c1">AJAX</span>
+            .<span class="pl-en">post</span>(<span class="pl-s"><span class="pl-pds">'</span>someURL<span class="pl-pds">'</span></span>, {data<span class="pl-k">:</span> data})
+            .<span class="pl-en">then</span>((<span class="pl-smi">xhr</span>) <span class="pl-k">=&gt;</span> {
+                <span class="pl-c">// xhr succeeded</span>
+                <span class="pl-k">let</span> response <span class="pl-k">=</span> <span class="pl-smi">xhr</span>.<span class="pl-smi">response</span>;
+                <span class="pl-c">// call resolve with the data that will be applied to the template</span>
+                <span class="pl-c">// you can even call resolve with false to skip navigation</span>
+                <span class="pl-en">resolve</span>({
+                    name<span class="pl-k">:</span> <span class="pl-smi">response</span>.<span class="pl-c1">name</span>,
+                    message<span class="pl-k">:</span> <span class="pl-smi">response</span>.<span class="pl-smi">message</span>
+                });
+            }, (<span class="pl-smi">xhr</span>) <span class="pl-k">=&gt;</span> {
+                <span class="pl-c">// xhr failed</span>
+                <span class="pl-k">let</span> response <span class="pl-k">=</span> <span class="pl-smi">xhr</span>.<span class="pl-smi">response</span>;
+                <span class="pl-en">reject</span>({
+                    status<span class="pl-k">:</span> <span class="pl-smi">xhr</span>.<span class="pl-c1">status</span>,
+                    message<span class="pl-k">:</span> <span class="pl-smi">response</span>.<span class="pl-smi">message</span>
+                });
+            });
+    }
+});
+<span class="pl-c">// later in your application</span>
+<span class="pl-smi">ATV</span>.<span class="pl-smi">Navigation</span>.<span class="pl-c1">navigate</span>(<span class="pl-s"><span class="pl-pds">'</span>login<span class="pl-pds">'</span></span>, {username<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>emadalam<span class="pl-pds">'</span></span>, password<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>123456<span class="pl-pds">'</span></span>});</pre></div>
+
+<p><a name="creating-menu-page"></a></p>
+
+<h4>
+<a id="creating-menu-page" class="anchor" href="#creating-menu-page" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating Menu Page</h4>
+
+<p>The way menu template is designed in TVJS, you need to first create a menu template with your list of menu items. You then need to create individual documents and set one for each of the menu item. The resultant menu template then needs to be parsed and converted into a document which you can push on the navigation stack. Sounds fancy? NO WAYS! Here comes atvjs for your rescue. All you need is a menu configuration with your items list and the pages that you want to associate. The rest will be taken care by the framework. You can then navigate to the menu page using the provided navigation method. SWEET!</p>
+
+<p><em>Note: Menu page is singleton, meaning you cannot create multiple menu pages. It seems logical, as an application at any given state, will have a single menu listing in its entire lifespan.</em></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// create your pages</span>
+<span class="pl-k">let</span> SearchPage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+<span class="pl-k">let</span> HomePage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+<span class="pl-k">let</span> MoviesPage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+<span class="pl-k">let</span> TVShowsPage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+
+<span class="pl-c">// create menu page</span>
+<span class="pl-smi">ATV</span>.<span class="pl-smi">Menu</span>.<span class="pl-en">create</span>({
+    <span class="pl-c">// any attributes that you want to set on the root level menuBar element of TVML</span>
+    attributes<span class="pl-k">:</span> {},
+    <span class="pl-c">// array of menu item configurations</span>
+    items<span class="pl-k">:</span> [{
+        id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>search<span class="pl-pds">'</span></span>,
+        name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Search<span class="pl-pds">'</span></span>,
+        page<span class="pl-k">:</span> SearchPage
+    }, {
+        id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>homepage<span class="pl-pds">'</span></span>,
+        name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Home<span class="pl-pds">'</span></span>,
+        page<span class="pl-k">:</span> HomePage,
+        attributes<span class="pl-k">:</span> {
+            autoHighlight<span class="pl-k">:</span> <span class="pl-c1">true</span> <span class="pl-c">// auto highlight on navigate</span>
+        }
+    }, {
+        id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>movies<span class="pl-pds">'</span></span>,
+        name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Movies<span class="pl-pds">'</span></span>,
+        page<span class="pl-k">:</span> MoviesPage
+    }, {
+        id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>tvshows<span class="pl-pds">'</span></span>,
+        name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>TV Shows<span class="pl-pds">'</span></span>,
+        page<span class="pl-k">:</span> TVShowsPage
+    }]
+});
+
+<span class="pl-c">// later in your application</span>
+<span class="pl-smi">ATV</span>.<span class="pl-smi">Navigation</span>.<span class="pl-en">navigateToMenuPage</span>();</pre></div>
+
+<p><a name="application-initialization-using-configuration"></a></p>
+
+<h4>
+<a id="application-initialization-using-configuration" class="anchor" href="#application-initialization-using-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application initialization using configuration</h4>
+
+<p>You can easily initialize your application by passing all the configurations at once.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// create your pages</span>
+<span class="pl-k">let</span> SearchPage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+<span class="pl-k">let</span> HomePage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+<span class="pl-k">let</span> MoviesPage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+<span class="pl-k">let</span> TVShowsPage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+<span class="pl-k">let</span> LoginPage <span class="pl-k">=</span> <span class="pl-smi">ATV</span>.<span class="pl-smi">Page</span>.<span class="pl-en">create</span>({<span class="pl-c">/* page configurations */</span>});
+
+<span class="pl-c">// template functions</span>
+<span class="pl-k">const</span> <span class="pl-c1">loaderTpl</span> <span class="pl-k">=</span> (<span class="pl-smi">data</span>) <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">`</span>&lt;document&gt;</span>
+<span class="pl-s">    &lt;loadingTemplate&gt;</span>
+<span class="pl-s">        &lt;activityIndicator&gt;</span>
+<span class="pl-s">            &lt;title&gt;<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">data</span>.<span class="pl-smi">message</span><span class="pl-pse">}</span></span>&lt;/title&gt;</span>
+<span class="pl-s">        &lt;/activityIndicator&gt;</span>
+<span class="pl-s">    &lt;/loadingTemplate&gt;</span>
+<span class="pl-s">&lt;/document&gt;<span class="pl-pds">`</span></span>;
+
+<span class="pl-k">const</span> <span class="pl-c1">errorTpl</span> <span class="pl-k">=</span> (<span class="pl-smi">data</span>) <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">`</span>&lt;document&gt;</span>
+<span class="pl-s">    &lt;descriptiveAlertTemplate&gt;</span>
+<span class="pl-s">        &lt;title&gt;<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">data</span>.<span class="pl-c1">title</span><span class="pl-pse">}</span></span>&lt;/title&gt;</span>
+<span class="pl-s">        &lt;description&gt;<span class="pl-s1"><span class="pl-pse">${</span><span class="pl-smi">data</span>.<span class="pl-smi">message</span><span class="pl-pse">}</span></span>&lt;/description&gt;</span>
+<span class="pl-s">    &lt;/descriptiveAlertTemplate&gt;</span>
+<span class="pl-s">&lt;/document&gt;<span class="pl-pds">`</span></span>;
+
+<span class="pl-c">// Global TVML styles</span>
+<span class="pl-k">let</span> globalStyles <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">`</span></span>
+<span class="pl-s">.text-bold {</span>
+<span class="pl-s">    font-weight: bold;</span>
+<span class="pl-s">}</span>
+<span class="pl-s">.text-white {</span>
+<span class="pl-s">    color: rgb(255, 255, 255);</span>
+<span class="pl-s">}</span>
+<span class="pl-s">.dark-background-color {</span>
+<span class="pl-s">    background-color: #091a2a;</span>
+<span class="pl-s">}</span>
+<span class="pl-s">.button {</span>
+<span class="pl-s">    background-color: rgba(0, 0, 0, 0.1);</span>
+<span class="pl-s">    tv-tint-color: rgba(0, 0, 0, 0.1);</span>
+<span class="pl-s">}</span>
+<span class="pl-s"><span class="pl-pds">`</span></span>;
+
+<span class="pl-c">// start your application by passing configurations</span>
+<span class="pl-smi">ATV</span>.<span class="pl-c1">start</span>({
+    style<span class="pl-k">:</span> globalStyles,
+    menu<span class="pl-k">:</span> {
+        attributes<span class="pl-k">:</span> {},
+        items<span class="pl-k">:</span> [{
+            id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>search<span class="pl-pds">'</span></span>,
+            name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Search<span class="pl-pds">'</span></span>,
+            page<span class="pl-k">:</span> SearchPage
+        }, {
+            id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>homepage<span class="pl-pds">'</span></span>,
+            name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Home<span class="pl-pds">'</span></span>,
+            page<span class="pl-k">:</span> HomePage,
+            attributes<span class="pl-k">:</span> {
+                autoHighlight<span class="pl-k">:</span> <span class="pl-c1">true</span> <span class="pl-c">// auto highlight on navigate</span>
+            }
+        }, {
+            id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>movies<span class="pl-pds">'</span></span>,
+            name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Movies<span class="pl-pds">'</span></span>,
+            page<span class="pl-k">:</span> MoviesPage
+        }, {
+            id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>tvshows<span class="pl-pds">'</span></span>,
+            name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>TV Shows<span class="pl-pds">'</span></span>,
+            page<span class="pl-k">:</span> TVShowsPage
+        }]
+    },
+    templates<span class="pl-k">:</span> {
+        <span class="pl-c">// loader template</span>
+        loader<span class="pl-k">:</span> loaderTpl,
+        <span class="pl-c">// global error template</span>
+        error<span class="pl-k">:</span> errorTpl,
+        <span class="pl-c">// xhr status based error messages</span>
+        status<span class="pl-k">:</span> {
+            <span class="pl-s"><span class="pl-pds">'</span>404<span class="pl-pds">'</span></span><span class="pl-k">:</span> () <span class="pl-k">=&gt;</span> <span class="pl-en">errorTpl</span>({
+                title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>404<span class="pl-pds">'</span></span>,
+                message<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>The given page was not found<span class="pl-pds">'</span></span>
+            }),
+            <span class="pl-s"><span class="pl-pds">'</span>500<span class="pl-pds">'</span></span><span class="pl-k">:</span> () <span class="pl-k">=&gt;</span> <span class="pl-en">errorTpl</span>({
+                title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>500<span class="pl-pds">'</span></span>,
+                message<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>An unknown error occurred, please try again later!<span class="pl-pds">'</span></span>
+            })
+        }
+    },
+    <span class="pl-c">// global event handlers that will be called for each of the pages</span>
+    handlers<span class="pl-k">:</span> {
+        select<span class="pl-k">:</span> {
+            <span class="pl-en">globalSelecthandler</span>(<span class="pl-smi">e</span>) {
+                <span class="pl-k">let</span> element <span class="pl-k">=</span> <span class="pl-smi">e</span>.<span class="pl-c1">target</span>;
+                <span class="pl-k">let</span> someElementTypeCheck <span class="pl-k">=</span> <span class="pl-smi">element</span>.<span class="pl-c1">getAttribute</span>(<span class="pl-s"><span class="pl-pds">'</span>data-my-attribute<span class="pl-pds">'</span></span>);
+
+                <span class="pl-k">if</span> (elementTypeCheck) {
+                    <span class="pl-c">// perform action</span>
+                }
+            }
+        }
+    },
+    <span class="pl-en">onLaunch</span>(<span class="pl-smi">options</span>) {
+        <span class="pl-c">// clear navigation stack</span>
+        <span class="pl-smi">ATV</span>.<span class="pl-smi">Navigation</span>.<span class="pl-c1">clear</span>();
+        <span class="pl-c">// navigate to menu page</span>
+        <span class="pl-smi">ATV</span>.<span class="pl-smi">Navigation</span>.<span class="pl-en">navigateToMenuPage</span>();
+        <span class="pl-c">// or you can navigate to previously created page</span>
+        <span class="pl-c">// ATV.Navigation.navigate('login');</span>
+    }
+});</pre></div>
+
+<p><a name="useful-links"></a></p>
+
+<h3>
+<a id="useful-links" class="anchor" href="#useful-links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Useful Links</h3>
+
+<ul>
+<li>Apple TV Development
+
+<ul>
+<li><a href="https://developer.apple.com/tvos/">tvOS</a></li>
+<li><a href="https://developer.apple.com/library/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/index.html">TVJS</a></li>
+<li><a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/index.html">TVML</a></li>
+<li><a href="http://josecasanova.com/blog/how-to-build-a-tvos-application-for-apple-tv-tutorial/">Building tvOS Applications - Tutorial 1</a></li>
+<li><a href="http://www.raywenderlich.com/114886/beginning-tvos-development-with-tvml-tutorial">Building tvOS Applications - Tutorial 2</a></li>
+</ul>
+</li>
+<li>General
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">JavaScript Promises</a></li>
+<li><a href="http://es6-features.org">ES6 Features</a></li>
+<li><a href="https://babeljs.io/">Babel</a></li>
+</ul>
+</li>
+</ul>
+
+<p><a name="contributions"></a></p>
 
 <h3>
 <a id="contributions" class="anchor" href="#contributions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributions</h3>
 
-<p>It was a hurried development process as we planned to launch our Apple TV application in a span of less than two months, with only a single full-time developer (that happened to be me) working on the project, this framework was a byproduct of the application. It is still in its very early stages and there might be few bugs and issues with it, with a huge scope of improvement. Please feel free to contribute and enhance this SDK with bug-fixes and features.</p>
+<p>It was a hurried development process as we planned to launch our Apple TV application in a span of less than two months, with only a single full-time developer (that happened to be me) working on the project, this framework was a byproduct of the application. It is still in its very early stages and there might be few bugs and issues with it, with a huge scope of improvement. Please feel free to contribute and enhance this framework with bug-fixes and features.</p>
+
+<p><a name="license"></a></p>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h3>
+
+<p>atvjs is released under the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
