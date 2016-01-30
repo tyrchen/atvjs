@@ -38,16 +38,9 @@
 
 
 <ul>
-<li>
-<a href="#philosophy">Philosophy</a>
-
-<ul>
-<li><a href="#what">What?</a></li>
-<li><a href="#why">Why?</a></li>
-<li><a href="#how">How?</a></li>
-</ul>
-</li>
+<li><a href="#philosophy">Philosophy</a></li>
 <li><a href="#whats-included">What's included</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
 <li>
 <a href="#basic-examples">Basic Examples</a>
 
@@ -68,6 +61,7 @@
 <li><a href="#application-initialization-using-configuration">Application initialization using configuration</a></li>
 </ul>
 </li>
+<li><a href="#sample-code">Sample Code</a></li>
 <li><a href="#useful-links">Useful Links</a></li>
 <li><a href="#contributions">Contributions</a></li>
 <li><a href="#license">License</a></li>
@@ -80,24 +74,18 @@
 <h3>
 <a id="philosophy" class="anchor" href="#philosophy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Philosophy</h3>
 
-<p><a name="what"></a></p>
-
-<h4>
-<a id="what" class="anchor" href="#what" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What?</h4>
+<h5>
+<a id="what" class="anchor" href="#what" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What?</h5>
 
 <p>This is a super simple framework for blazing fast <a href="https://developer.apple.com/tvos/">Apple TV</a> application development using pure JavaScript. It relies on the <a href="https://developer.apple.com/tvos/">tvOS</a> provided <a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/">TVML</a> and <a href="https://developer.apple.com/library/prerelease/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/">TVJS</a> for <a href="https://developer.apple.com/library/tvos/documentation/General/Conceptual/AppleTV_PG/">Apple TV development</a>. However this framework does most of the heavy lifting for you and lets you concentrate on your application logic without worrying about the hassles of complicated architecture for Apple TV development. Build your Apple TV application the same way how you are used to building your SPA applications in JavaScript and let the framework handle the rest for you.</p>
 
-<p><a name="why"></a></p>
-
-<h4>
-<a id="why" class="anchor" href="#why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why?</h4>
+<h5>
+<a id="why" class="anchor" href="#why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why?</h5>
 
 <p>The existing application architecture and sample code provided by apple for building the Apple TV applications using TVML and TVJS appears to be very immature (no offense Apple) and feels more like the web applications of the 90s where each of the page loads separately by sending the request to the back-end which generates your application page markup based on the user interaction and sends the new page back to the browser. This is okay if we were still in the 90s but feels so dumb in this era where we are used to building SPAs with REST APIs and back-end is used just as a data interaction point. Here comes <em>atvjs</em> that bridges the gap and lets you use the same architecture that, we as front-end developers, have embraced over the years.</p>
 
-<p><a name="how"></a></p>
-
-<h4>
-<a id="how" class="anchor" href="#how" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How?</h4>
+<h5>
+<a id="how" class="anchor" href="#how" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How?</h5>
 
 <p>You simply create your pages (views) by passing a bunch of configurations (name of the page, template function, url etc) with your desired data (you can either populate data manually using your own ajax requests or pass a url configuration to fetch data from your server). Once the page is created, it is uniquely identifiable using the name. You can navigate to your page anytime in your application using the same name.</p>
 
@@ -113,18 +101,52 @@
 <li>Event handling (both global and for individual pages and elements)</li>
 <li>Application level persistent data storage using localStorage <code>ATV.Settings.set</code>,  <code>ATV.Settings.get</code>, <code>ATV.Settings.remove</code>
 </li>
-<li>AJAX library using JavaScript Promises <code>ATV.AJAX</code>, <code>ATV.AJAX.get</code>, <code>ATV.AJAX.post</code>, <code>ATV.AJAX.put</code>, <code>ATV.AJAX.del</code>
+<li>Ajax library using JavaScript Promises <code>ATV.Ajax</code>, <code>ATV.Ajax.get</code>, <code>ATV.Ajax.post</code>, <code>ATV.Ajax.put</code>, <code>ATV.Ajax.del</code>
 </li>
 <li>Application level publish/subscribe using <a href="https://github.com/mroderick/PubSubJS">PubSubJS</a> <code>ATV.subscribe</code>, <code>ATV.publish</code>, <code>ATV.unsubscribe</code>
 </li>
 <li>Application initialization/reload using simple configurations <code>ATV.start</code>, <code>ATV.reload</code>
 </li>
 <li>Global error handling</li>
-<li>JavaScript <code>Promise</code> and other ES6 Features <a href="https://babeljs.io/docs/usage/polyfill/">Polyfill using babel</a>
+<li>JavaScript <code>Promise</code> and other ES6 Features Polyfill using <a href="https://babeljs.io/docs/usage/polyfill/">babel</a>
 </li>
 <li>
-<a href="https://lodash.com/">lodash</a> library</li>
+<a href="https://lodash.com/">lodash</a> library as <code>ATV._</code>
+</li>
 </ul>
+
+<p><a name="getting-started"></a></p>
+
+<h3>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
+
+<p><code>atvjs</code> is defined as a <code>UMD</code> and available as an <a href="https://www.npmjs.com/package/atvjs">npm package</a>. You can either import it as a dependency or download it independently and include in your project.</p>
+
+<pre><code>$ npm install --save atvjs
+</code></pre>
+
+<p>You'll then be able to use it as a dependency with your favorite module system.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> <span class="pl-smi">ATV</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>atvjs<span class="pl-pds">'</span></span>;
+<span class="pl-c">// or</span>
+<span class="pl-k">var</span> <span class="pl-c1">ATV</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>atvjs<span class="pl-pds">'</span></span>);</pre></div>
+
+<p>Or if you have downloaded a copy of <code>atvjs</code>, pull the script inside your application after launch.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">onEvaluate</span>(<span class="pl-smi">success</span>) {
+    <span class="pl-k">if</span> (<span class="pl-k">!</span>success) {
+        <span class="pl-c">// application failed to load</span>
+    }
+}
+
+<span class="pl-c1">App</span>.<span class="pl-en">onLaunch</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">options</span>) {
+    <span class="pl-k">var</span> baseurl <span class="pl-k">=</span> <span class="pl-smi">options</span>.<span class="pl-c1">BASEURL</span>;
+    <span class="pl-smi">App</span>.<span class="pl-smi">launchOptions</span> <span class="pl-k">=</span> options;
+    <span class="pl-en">evaluateScripts</span>([<span class="pl-s"><span class="pl-pds">`</span><span class="pl-s1"><span class="pl-pse">${</span>baseurl<span class="pl-pse">}</span></span>atv.min.js<span class="pl-pds">`</span></span>, <span class="pl-s"><span class="pl-pds">`</span><span class="pl-s1"><span class="pl-pse">${</span>baseurl<span class="pl-pse">}</span></span>app.js<span class="pl-pds">`</span></span>], onEvaluate);
+};
+
+<span class="pl-c">// then in your app.js you will have the instance of ATV library available</span>
+<span class="pl-c">// you can contain your entire application code inside app.js</span></pre></div>
 
 <p><a name="basic-examples"></a></p>
 
@@ -154,7 +176,7 @@
     <span class="pl-c">// or a data function that returns the data</span>
     data<span class="pl-k">:</span> {
         title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Homepage<span class="pl-pds">'</span></span>,
-        message<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>This is my super awesome homepage created using atvjs.<span class="pl-pds">'</span></span>
+        description<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>This is my super awesome homepage created using atvjs.<span class="pl-pds">'</span></span>
     }
 });
 
@@ -300,7 +322,7 @@
         <span class="pl-c">// perform ajax to get the data</span>
         <span class="pl-c">// the ajax method in the library returns an instance of the Promise object</span>
         <span class="pl-c1">ATV</span>
-            .<span class="pl-c1">AJAX</span>
+            .<span class="pl-smi">Ajax</span>
             .<span class="pl-en">post</span>(<span class="pl-s"><span class="pl-pds">'</span>someURL<span class="pl-pds">'</span></span>, {data<span class="pl-k">:</span> data})
             .<span class="pl-en">then</span>((<span class="pl-smi">xhr</span>) <span class="pl-k">=&gt;</span> {
                 <span class="pl-c">// xhr succeeded</span>
@@ -473,8 +495,6 @@
         }
     },
     <span class="pl-en">onLaunch</span>(<span class="pl-smi">options</span>) {
-        <span class="pl-c">// clear navigation stack</span>
-        <span class="pl-smi">ATV</span>.<span class="pl-smi">Navigation</span>.<span class="pl-c1">clear</span>();
         <span class="pl-c">// navigate to menu page</span>
         <span class="pl-smi">ATV</span>.<span class="pl-smi">Navigation</span>.<span class="pl-en">navigateToMenuPage</span>();
         <span class="pl-c">// or you can navigate to previously created page</span>
@@ -482,30 +502,26 @@
     }
 });</pre></div>
 
+<p><a name="sample-code"></a></p>
+
+<h3>
+<a id="sample-code" class="anchor" href="#sample-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sample Code</h3>
+
+<p>You can find a port of the original TVML Catalog sample code <a href="https://github.com/emadalam/tvml-catalog-using-atvjs">re-written using atvjs</a>.</p>
+
 <p><a name="useful-links"></a></p>
 
 <h3>
 <a id="useful-links" class="anchor" href="#useful-links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Useful Links</h3>
 
 <ul>
-<li>Apple TV Development
-
-<ul>
-<li><a href="https://developer.apple.com/tvos/">tvOS</a></li>
-<li><a href="https://developer.apple.com/library/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/index.html">TVJS</a></li>
-<li><a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/index.html">TVML</a></li>
-<li><a href="http://josecasanova.com/blog/how-to-build-a-tvos-application-for-apple-tv-tutorial/">Building tvOS Applications - Tutorial 1</a></li>
-<li><a href="http://www.raywenderlich.com/114886/beginning-tvos-development-with-tvml-tutorial">Building tvOS Applications - Tutorial 2</a></li>
-</ul>
+<li>Apple TV Development - <a href="https://developer.apple.com/tvos/">tvOS</a>, <a href="https://developer.apple.com/library/tvos/documentation/TVMLJS/Reference/TVJSFrameworkReference/index.html">TVJS</a> and <a href="https://developer.apple.com/library/prerelease/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/index.html">TVML</a>
 </li>
-<li>General
-
-<ul>
+<li>Building tvOS Applications - <a href="http://josecasanova.com/blog/how-to-build-a-tvos-application-for-apple-tv-tutorial/">Tutorial 1</a> and <a href="http://www.raywenderlich.com/114886/beginning-tvos-development-with-tvml-tutorial">Tutorial 2</a>
+</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">JavaScript Promises</a></li>
 <li><a href="http://es6-features.org">ES6 Features</a></li>
 <li><a href="https://babeljs.io/">Babel</a></li>
-</ul>
-</li>
 </ul>
 
 <p><a name="contributions"></a></p>
@@ -513,7 +529,11 @@
 <h3>
 <a id="contributions" class="anchor" href="#contributions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributions</h3>
 
-<p>It was a hurried development process as we planned to launch our Apple TV application in a span of less than two months, with only a single full-time developer (that happened to be me) working on the project, this framework was a byproduct of the application. It is still in its very early stages and there might be few bugs and issues with it, with a huge scope of improvement. Please feel free to contribute and enhance this framework with bug-fixes and features.</p>
+<ul>
+<li>Fork the project</li>
+<li>Commit your enhancements and bug fixes</li>
+<li>Create a pull request describing the changes</li>
+</ul>
 
 <p><a name="license"></a></p>
 
